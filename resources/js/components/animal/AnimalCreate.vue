@@ -65,7 +65,6 @@
                         app.$router.push({path: '/'});
                     })
                     .catch(function (resp) {
-                        console.log(resp);
                         alert("Could not create animal");
                     });
             }

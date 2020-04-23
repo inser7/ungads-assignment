@@ -6,6 +6,8 @@ use Illuminate\Http\Response;
 use App\Animal;
 use App\Http\Requests\AnimalRequest;
 
+use Illuminate\Http\Request;
+
 class AnimalController extends Controller
 {
     /**
@@ -23,7 +25,7 @@ class AnimalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(AnimalRequest $request)
+    public function create(Request $request)
     {
         $animal = Animal::create($request->validated());
         return response($animal->jsonSerialize(), Response::HTTP_CREATED);
@@ -35,9 +37,9 @@ class AnimalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(AnimalRequest $request)
+    public function store(Request $request)
     {
-        //
+        var_dump($request);
     }
 
     /**

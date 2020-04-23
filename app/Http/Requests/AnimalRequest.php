@@ -53,7 +53,7 @@ class AnimalRequest extends FormRequest
             'name.required' => 'A name is required',
             'type.required' => 'A type is required',
             'nick.required' => 'A nick is required',
-            'picture_path.required' => 'A picture_path is required',
+            'picture_path.required' => 'A picture_path  is required',
         ];
     }
 }

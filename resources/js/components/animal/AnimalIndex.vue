@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="form-group">
-            <router-link :to="{name: 'createAnimal'}" class="btn btn-success">Create new animal</router-link>
+            <router-link :to="{name: 'createAnimal'}" class="btn btn-success disabled">Create new animal</router-link>
         </div>
 
         <div class="panel panel-default">

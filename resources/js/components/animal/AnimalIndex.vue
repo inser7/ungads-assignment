@@ -67,7 +67,7 @@
                     var app = this;
                     axios.delete('/api/animal/' + id)
                         .then(function (resp) {
-                            app.companies.splice(index, 1);
+                            app.animal.splice(index, 1);
                         })
                         .catch(function (resp) {
                             alert("Could not delete animals");

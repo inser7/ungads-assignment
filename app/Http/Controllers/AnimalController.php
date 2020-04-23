@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Animal;
 use App\Http\Requests\AnimalRequest;
@@ -73,9 +72,6 @@ class AnimalController extends Controller
     public function update(AnimalRequest $request, $id)
     {
         $animal = Animal::findOrFail($id);
-//        $animal->name = $request->name;
-//        $animal->save();
-
         $animal->fill($request->except(['id']));
         $animal->save();
 

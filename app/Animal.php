@@ -12,4 +12,6 @@ class Animal extends Model
      * @var string
      */
     protected $table = 'animal';
+
+    protected $fillable = ['name', 'type', 'nick', 'picture_path'];
 }

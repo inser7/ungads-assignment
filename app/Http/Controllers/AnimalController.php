@@ -48,7 +48,7 @@ class AnimalController extends Controller
      */
     public function show($id)
     {
-        //
+        return response(Animal::findOrFail($id)->jsonSerialize(), Response::HTTP_OK);
     }
 
     /**

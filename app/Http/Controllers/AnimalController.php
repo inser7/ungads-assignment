@@ -6,8 +6,6 @@ use Illuminate\Http\Response;
 use App\Animal;
 use App\Http\Requests\AnimalRequest;
 
-use Illuminate\Http\Request;
-
 class AnimalController extends Controller
 {
     /**
@@ -21,25 +19,15 @@ class AnimalController extends Controller
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Store a newly created resource in storage.
      *
+     * @param  App\Http\Requests\AnimalRequest  $request
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function store(AnimalRequest $request)
     {
         $animal = Animal::create($request->validated());
         return response($animal->jsonSerialize(), Response::HTTP_CREATED);
-    }
-
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        var_dump($request);
     }
 
     /**
@@ -53,21 +41,11 @@ class AnimalController extends Controller
         return response(Animal::findOrFail($id)->jsonSerialize(), Response::HTTP_OK);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\AnimalRequest $request
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */

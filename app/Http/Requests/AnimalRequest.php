@@ -25,9 +25,9 @@ class AnimalRequest extends FormRequest
     public function rules(Request $request)
     {
         $rules = [
-            'name' => 'required|min:5',
-            'type' => 'required|min:5',
-            'nick' => 'required|min:5',
+            'name' => 'required|min:2',
+            'type' => 'required|min:2',
+            'nick' => 'required|min:2',
             'picture_path' => 'required|min:1'
         ];
 
@@ -53,7 +53,7 @@ class AnimalRequest extends FormRequest
             'name.required' => 'A name is required',
             'type.required' => 'A type is required',
             'nick.required' => 'A nick is required',
-            'picture_path.required' => 'A picture_path  is required',
+            'picture_path.required' => 'A picture_path is required',
         ];
     }
 }

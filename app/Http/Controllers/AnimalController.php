@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
 use App\Animal;
+use App\Http\Requests\AnimalRequest;
 
 class AnimalController extends Controller
 {
@@ -23,9 +24,9 @@ class AnimalController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create(Request $request)
+    public function create(AnimalRequest $request)
     {
-        $animal = Animal::create($request->all());
+        $animal = Animal::create($request->validated());
         return response($animal->jsonSerialize(), Response::HTTP_CREATED);
     }
 
@@ -35,7 +36,7 @@ class AnimalController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AnimalRequest $request)
     {
         //
     }
@@ -69,11 +70,15 @@ class AnimalController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(AnimalRequest $request, $id)
     {
         $animal = Animal::findOrFail($id);
-        $animal->name = $request->name;
+//        $animal->name = $request->name;
+//        $animal->save();
+
+        $animal->fill($request->except(['id']));
         $animal->save();
+
         return response(null, Response::HTTP_OK);
     }
 

@@ -7,8 +7,11 @@
 
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
-    <link href="/css/bootstrap.min.css" rel="stylesheet">
-    {{--        <link href="/css/gentelella-custom.css" rel="stylesheet">--}}
+    <link href="/css/bootstrap.css" rel="stylesheet">
+    <link href="/css/gentelella-custom.css" rel="stylesheet">
+    <link href="/css/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/css/buttons.bootstrap.css" rel="stylesheet">
+    <link href="/css/fixedheader.bootstrap.css" rel="stylesheet">
 </head>
 
 <body>
@@ -22,11 +25,7 @@
     </div>
 </div>
 
-<footer class="py-5 bg-dark">
-    <div class="container">
-        <p class="m-0 text-center text-white">https://github.com/inser7/ungads</p>
-    </div>
-</footer>
+
 
     <script src="{{ mix('js/app.js') }}"></script>
 </body>

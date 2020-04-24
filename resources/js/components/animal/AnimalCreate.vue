@@ -69,15 +69,11 @@
                 let reader = new FileReader();
                 reader.onload = (e) => {
                     this.animal.image = e.target.result;
-                    console.log(this.animal.image);
                 };
                 reader.readAsDataURL(file);
             },
             saveForm() {
                 event.preventDefault();
-                const config = {
-                    headers: { 'content-type': 'multipart/form-data' }
-                }
 
                 var app = this;
                 var newAnimal = app.animal;

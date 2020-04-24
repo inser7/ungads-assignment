@@ -1,4 +1,11 @@
 {
-    "/js/app.js": "/js/app.js",
-    "/css/app.css": "/css/app.css"
+    "/js/app.js": "/js/app.js?id=608d1e23341936b52c2f",
+    "/css/gentelella-custom.css": "/css/gentelella-custom.css?id=fe11fac6af229f2a5aa1",
+    "/css/bootstrap.css": "/css/bootstrap.css?id=2a31dca112f26923b516",
+    "/css/bootstrap.css.map": "/css/bootstrap.css.map?id=c7ffd8c7a285780039b2",
+    "/css/dataTables.bootstrap.css": "/css/dataTables.bootstrap.css?id=199ff38fd61a7e4516ee",
+    "/css/buttons.bootstrap.css": "/css/buttons.bootstrap.css?id=4dc83bd574be3c09f637",
+    "/css/fixedheader.bootstrap.css": "/css/fixedheader.bootstrap.css?id=0bd6af591d1a3def845d",
+    "/css/responsive.bootstrap.css": "/css/responsive.bootstrap.css?id=a5d461c33630c753bb12",
+    "/css/scroller.bootstrap.css": "/css/scroller.bootstrap.css?id=5219ddc1b58037ff21cb"
 }

@@ -29,7 +29,10 @@
                     <div class="row">
                         <div class="col-xs-12 form-group">
                             <label class="control-label">Animal photo</label>
-                            <input type="text" v-model="animal.picture_path" class="form-control">
+                            <input type="file" v-on:change="onImageChange" class="form-control">
+                            <div class="col-md-3" v-if="animal.image">
+                                <img :src="animal.image" class="img-responsive" height="70" width="90">
+                            </div>
                         </div>
                     </div>
                     <div class="row">
@@ -51,15 +54,34 @@
                     name: '',
                     type: '',
                     nick: '',
-                    picture_path: '',
+                    image: '',
                 }
             }
         },
         methods: {
+            onImageChange(e) {
+                let files = e.target.files || e.dataTransfer.files;
+                if (!files.length)
+                    return;
+                this.createImage(files[0]);
+            },
+            createImage(file) {
+                let reader = new FileReader();
+                reader.onload = (e) => {
+                    this.animal.image = e.target.result;
+                    console.log(this.animal.image);
+                };
+                reader.readAsDataURL(file);
+            },
             saveForm() {
                 event.preventDefault();
+                const config = {
+                    headers: { 'content-type': 'multipart/form-data' }
+                }
+
                 var app = this;
                 var newAnimal = app.animal;
+
                 axios.post('/api/animal', newAnimal)
                     .then(function (resp) {
                         app.$router.push({path: '/'});

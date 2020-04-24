@@ -26,8 +26,23 @@ class AnimalController extends Controller
      */
     public function store(AnimalRequest $request)
     {
-        $animal = Animal::create($request->validated());
-        return response($animal->jsonSerialize(), Response::HTTP_CREATED);
+        $image = $request->get('image');
+        $name = time().'.' . explode('/', explode(':', substr($image, 0, strpos($image, ';')))[1])[1];
+        \Image::make($request->get('image'))->save(public_path('images/').$name);
+
+        $request->picture_path = $name;
+
+        if ($request->validated()) {
+            $animal = new Animal();
+            $animal->name = $request->get('name');
+            $animal->type = $request->get('type');
+            $animal->nick = $request->get('nick');
+            $animal->picture_path = $name;
+            $animal->save();
+            return response($animal->jsonSerialize(), Response::HTTP_CREATED);
+        } else {
+            return response(null, Response::HTTP_BAD_REQUEST);
+        }
     }
 
     /**

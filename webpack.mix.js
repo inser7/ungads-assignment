@@ -25,8 +25,7 @@ mix.js('resources/js/app.js', 'public/js').version();
 //.sass('resources/sass/app.scss', 'public/css');
 
 mix.
-    // gentelella
-    copy(gentelella_home + 'build/css/custom.css',
+copy(gentelella_home + 'build/css/custom.css',
         public_css + 'gentelella-custom.css').
 
 // bootstrap
@@ -48,4 +47,4 @@ copy(gentelella_vendor +
     public_css + 'responsive.bootstrap.css').
 copy(gentelella_vendor +
     'datatables.net-scroller-bs/css/scroller.bootstrap.css',
-    public_css + 'scroller.bootstrap.css').
+    public_css + 'scroller.bootstrap.css');

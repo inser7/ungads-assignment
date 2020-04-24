@@ -28,7 +28,6 @@ class AnimalRequest extends FormRequest
             'name' => 'required|min:2',
             'type' => 'required|min:2',
             'nick' => 'required|min:2',
-            'picture_path' => 'required|min:1'
         ];
 
         switch ($this->getMethod())

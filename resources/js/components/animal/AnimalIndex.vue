@@ -22,7 +22,11 @@
                         <td>{{ animal.name }}</td>
                         <td>{{ animal.type }}</td>
                         <td>{{ animal.nick }}</td>
-                        <td>{{ animal.picture_path }}</td>
+                        <td>
+                            <div class="col-md-3" v-if="animal.picture_path">
+                                <img :src="'/images/'+ animal.picture_path" class="img-responsive" height="70" width="90">
+                            </div>
+                        </td>
                         <td>
                             <router-link :to="{name: 'editAnimal', params: {id: animal.id}}" class="btn btn-xs btn-default">
                                 Edit
@@ -49,15 +53,12 @@
             }
         },
         created() {
-           console.log("mounted");
             var app = this;
             axios.get('/api/animal')
                 .then(function (resp) {
                     app.animals = resp.data;
-                    console.log(resp.data);
                 })
                 .catch(function (resp) {
-                    console.log(resp);
                     alert("Could not load animals");
                 });
         },
@@ -67,7 +68,7 @@
                     var app = this;
                     axios.delete('/api/animal/' + id)
                         .then(function (resp) {
-                            app.animal.splice(index, 1);
+                            app.animals.splice(index, 1);
                         })
                         .catch(function (resp) {
                             alert("Could not delete animals");

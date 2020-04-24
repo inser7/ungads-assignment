@@ -1953,6 +1953,9 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -1960,13 +1963,35 @@ __webpack_require__.r(__webpack_exports__);
         name: '',
         type: '',
         nick: '',
-        picture_path: ''
+        image: ''
       }
     };
   },
   methods: {
+    onImageChange: function onImageChange(e) {
+      var files = e.target.files || e.dataTransfer.files;
+      if (!files.length) return;
+      this.createImage(files[0]);
+    },
+    createImage: function createImage(file) {
+      var _this = this;
+
+      var reader = new FileReader();
+
+      reader.onload = function (e) {
+        _this.animal.image = e.target.result;
+        console.log(_this.animal.image);
+      };
+
+      reader.readAsDataURL(file);
+    },
     saveForm: function saveForm() {
       event.preventDefault();
+      var config = {
+        headers: {
+          'content-type': 'multipart/form-data'
+        }
+      };
       var app = this;
       var newAnimal = app.animal;
       axios.post('/api/animal', newAnimal).then(function (resp) {
@@ -1974,7 +1999,6 @@ __webpack_require__.r(__webpack_exports__);
           path: '/'
         });
       })["catch"](function (resp) {
-        console.log(resp);
         alert("Could not create animal");
       });
     }
@@ -2128,6 +2152,10 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2135,13 +2163,10 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   created: function created() {
-    console.log("mounted");
     var app = this;
     axios.get('/api/animal').then(function (resp) {
       app.animals = resp.data;
-      console.log(resp.data);
     })["catch"](function (resp) {
-      console.log(resp);
       alert("Could not load animals");
     });
   },
@@ -2150,7 +2175,7 @@ __webpack_require__.r(__webpack_exports__);
       if (confirm("Do you really want to delete it?")) {
         var app = this;
         axios["delete"]('/api/animal/' + id).then(function (resp) {
-          app.companies.splice(index, 1);
+          app.animals.splice(index, 1);
         })["catch"](function (resp) {
           alert("Could not delete animals");
         });
@@ -37932,26 +37957,23 @@ var render = function() {
                 ]),
                 _vm._v(" "),
                 _c("input", {
-                  directives: [
-                    {
-                      name: "model",
-                      rawName: "v-model",
-                      value: _vm.animal.picture_path,
-                      expression: "animal.picture_path"
-                    }
-                  ],
                   staticClass: "form-control",
-                  attrs: { type: "text" },
-                  domProps: { value: _vm.animal.picture_path },
-                  on: {
-                    input: function($event) {
-                      if ($event.target.composing) {
-                        return
-                      }
-                      _vm.$set(_vm.animal, "picture_path", $event.target.value)
-                    }
-                  }
-                })
+                  attrs: { type: "file" },
+                  on: { change: _vm.onImageChange }
+                }),
+                _vm._v(" "),
+                _vm.animal.image
+                  ? _c("div", { staticClass: "col-md-3" }, [
+                      _c("img", {
+                        staticClass: "img-responsive",
+                        attrs: {
+                          src: _vm.animal.image,
+                          height: "70",
+                          width: "90"
+                        }
+                      })
+                    ])
+                  : _vm._e()
               ])
             ]),
             _vm._v(" "),
@@ -38217,7 +38239,20 @@ var render = function() {
                 _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(animal.nick))]),
                 _vm._v(" "),
-                _c("td", [_vm._v(_vm._s(animal.picture_path))]),
+                _c("td", [
+                  animal.picture_path
+                    ? _c("div", { staticClass: "col-md-3" }, [
+                        _c("img", {
+                          staticClass: "img-responsive",
+                          attrs: {
+                            src: "/images/" + animal.picture_path,
+                            height: "70",
+                            width: "90"
+                          }
+                        })
+                      ])
+                    : _vm._e()
+                ]),
                 _vm._v(" "),
                 _c(
                   "td",
@@ -53398,30 +53433,7 @@ __webpack_require__.r(__webpack_exports__);
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // window.Vue = require('vue');
-
-/**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
-// const files = require.context('./', true, /\.vue$/i)
-// files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
-// Vue.component('example-component', require('./components/ExampleComponent.vue').default);
-//
-// /**
-//  * Next, we will create a fresh Vue application instance and attach it to
-//  * the page. Then, you may begin adding components to this application
-//  * or customize the JavaScript scaffolding to fit your unique needs.
-//  */
-//
-// const app = new Vue({
-//     el: '#app',
-// });
-/////////////////////////////
-
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
@@ -53704,26 +53716,14 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./resources/sass/app.scss":
-/*!*********************************!*\
-  !*** ./resources/sass/app.scss ***!
-  \*********************************/
-/*! no static exports found */
-/***/ (function(module, exports) {
-
-// removed by extract-text-webpack-plugin
-
-/***/ }),
-
 /***/ 0:
-/*!*************************************************************!*\
-  !*** multi ./resources/js/app.js ./resources/sass/app.scss ***!
-  \*************************************************************/
+/*!***********************************!*\
+  !*** multi ./resources/js/app.js ***!
+  \***********************************/
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\OpenServer\domains\animal.local\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\OpenServer\domains\animal.local\resources\sass\app.scss */"./resources/sass/app.scss");
+module.exports = __webpack_require__(/*! C:\OpenServer\domains\animal.local\resources\js\app.js */"./resources/js/app.js");
 
 
 /***/ })

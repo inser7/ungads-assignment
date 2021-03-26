@@ -1,6 +1,6 @@
 ## Installation
 ```
-git clone https://github.com/inser7/ungads.git
+git clone https://github.com/inser7/ungads-assignment.git
 cd ungads
 composer install
 php artisan migrate
